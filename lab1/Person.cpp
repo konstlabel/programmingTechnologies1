@@ -66,5 +66,5 @@ void Person::setPatronymic(const std::string& patronymic) {
 }
 
 void Person::setRole(Role role) {
-    this->role = role
+    this->role = role;
 }
