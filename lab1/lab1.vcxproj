@@ -124,7 +124,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="lab1.cpp" />
+    <ClCompile Include="Group.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Person.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Admin.h" />
+    <ClInclude Include="Group.h" />
+    <ClInclude Include="Person.h" />
+    <ClInclude Include="Professor.h" />
+    <ClInclude Include="Role.h" />
+    <ClInclude Include="Student.h" />
+    <ClInclude Include="University.h" />
+    <ClInclude Include="Vector.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Vector.inl">
+      <FileType>Document</FileType>
+    </ClInclude>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

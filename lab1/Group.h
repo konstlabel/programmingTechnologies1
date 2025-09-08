@@ -14,20 +14,20 @@ namespace Groups {
 
     public:
         Group();
-        explicit Group(const std::string&);
-        Group(const Group&);
+        explicit Group(const std::string& name);
+        Group(const Group& other);
 
         ~Group();
 
-        Group& operator =(const Group&);
+        Group& operator =(const Group& other);
 
         std::string getName() const;
         Vector<Student>& getStudents();
 
-        void setName(const std::string&);
-        void setStudents(const Vector<Student>&);
+        void setName(const std::string& name);
+        void setStudents(const Vector<Student>& students);
 
-        Student* findByIndex(int);
+        Student* findByIndex(int index);
         void print();
     };
 }

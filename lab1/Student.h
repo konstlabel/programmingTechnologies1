@@ -15,31 +15,28 @@ namespace Students {
 
     public:
         Student();
-        explicit Student(const std::string&,
-                        const std::string&,
-                        const std::string&,
-                        const std::string&,
-                        const std::string&,
-                        int,
-                        float);
-        Student(const Student&);
+        explicit Student(const std::string& surname,
+                        const std::string& name,
+                        const std::string& patronymic,
+                        const std::string& groupName,
+                        const std::string& speciality,
+                        int course,
+                        float averageScore);
+        Student(const Student& other);
 
         ~Student();
 
-        Student& operator =(const Student&);
+        Student& operator =(const Student& other);
 
         std::string getGroupName() const;
         std::string getSpeciality() const;
         int getCourse() const;
         float getAverageScore() const;
-        Role getRole() const override;
 
-        void setGroupName(const std::string&);
-        //todo
-        void setSpeciality(const std::string&);
-        void setCourse(int);
-        void setAverageScore(float);
-        void setRole(Role) override;
+        void setGroupName(const std::string& groupName);
+        void setSpeciality(const std::string& speciality);
+        void setCourse(int course);
+        void setAverageScore(float averageScore);
 
         std::string toString() override;
     };

@@ -15,22 +15,23 @@ namespace Vectors {
 
     public:
         Vector();
-        explicit Vector(int, bool);
-        Vector(const Vector<T>&);
+        explicit Vector(int data, bool ownsObjects);
+        Vector(const Vector<T>& other);
 
         ~Vector();
 
-        Vector& operator =(const Vector&);
+        Vector& operator =(const Vector& other);
 
         int getSize() const;
         int getCapacity() const;
         bool getOwnsObjects() const;
 
-        void add(const T*);
+        void add(const T* obj);
         void print() const;
-        void deleteByIndex(int);
+        void deleteByIndex(int index);
 
-        T* getByIndex(int);
+        T* getByIndex(int index);
+        bool exists(const T& obj);
     };
 }
 

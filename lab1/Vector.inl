@@ -168,4 +168,12 @@ namespace Vectors {
 
         return data[index];
     }
+
+    template<typename T>
+    bool Vector<T>::exists(const T& obj) {
+        for (int i = 0; i < size; i++) {
+            if (this->getByIndex(i) == obj) return true;
+        }
+        return false;
+    }
 }
