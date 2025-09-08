@@ -23,12 +23,12 @@ namespace Persons {
         std::string getSurname() const;
         std::string getName() const;
         std::string getPatronymic() const;
-        virtual Role getRole() const = 0;
+        virtual Role getRole() const;
 
         void setSurname(const std::string&);
         void setName(const std::string&);
         void setPatronymic(const std::string&);
-        virtual void setRole(Role) = 0;
+        virtual void setRole(Role);
 
         virtual std::string toString() = 0;
     };

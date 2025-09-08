@@ -50,6 +50,10 @@ std::string Person::getPatronymic() const {
     return patronymic;
 }
 
+Role Person::getRole() const {
+    return role;
+}
+
 void Person::setSurname(const std::string& surname) {
     this->surname = surname;
 }
@@ -59,4 +63,8 @@ void Person::setName(const std::string& name) {
 }
 void Person::setPatronymic(const std::string& patronymic) {
     this->patronymic = patronymic;
+}
+
+void Person::setRole(Role role) {
+    this->role = role
 }
