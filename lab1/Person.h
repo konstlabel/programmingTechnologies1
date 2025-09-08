@@ -13,22 +13,22 @@ namespace Persons {
 
     public:
         Person();
-        explicit Person(const std::string&, const std::string&, const std::string&);
-        Person(const Person&);
+        explicit Person(const std::string& surname, const std::string& name, const std::string& patronymic);
+        Person(const Person& other);
 
         virtual ~Person();
         
-        Person& operator =(const Person&);
+        Person& operator =(const Person& other);
 
         std::string getSurname() const;
         std::string getName() const;
         std::string getPatronymic() const;
         virtual Role getRole() const;
 
-        void setSurname(const std::string&);
-        void setName(const std::string&);
-        void setPatronymic(const std::string&);
-        virtual void setRole(Role);
+        void setSurname(const std::string& surname);
+        void setName(const std::string& name);
+        void setPatronymic(const std::string& patronymic);
+        virtual void setRole(Role role);
 
         virtual std::string toString() = 0;
     };
