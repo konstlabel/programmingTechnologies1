@@ -19,17 +19,12 @@ namespace Vectors {
     template<typename T>
     void Vector<T>::sort() {
 
-        for (int i = 0; i < size - 1; i++) {
-            for (int j = 0; j < size - i - 1; j++) {
+        if constexpr (std::is_same_v(T, std::string)) {
 
-                if (data[j]->getSurname() > data[j + 1]->getSurname()) {
-                    T* temp = data[j];
-                    data[j] = data[j + 1];
-                    data[j + 1] = temp;
-                }
+            for (int i = 0; i < size - 1; i++) {
+                for (int j = 0; j < size - i - 1; j++) {
 
-                else if (data[j]->getSurname() == data[j + 1]->getSurname()) {
-                    if (data[j]->getName() > data[j + 1]->getName()) {
+                    if (data[j] > data[j + 1]) {
                         T* temp = data[j];
                         data[j] = data[j + 1];
                         data[j + 1] = temp;
@@ -37,6 +32,28 @@ namespace Vectors {
                 }
             }
         }
+        else {
+
+            for (int i = 0; i < size - 1; i++) {
+                for (int j = 0; j < size - i - 1; j++) {
+
+                    if (data[j]->getSurname() > data[j + 1]->getSurname()) {
+                        T* temp = data[j];
+                        data[j] = data[j + 1];
+                        data[j + 1] = temp;
+                    }
+
+                    else if (data[j]->getSurname() == data[j + 1]->getSurname()) {
+                        if (data[j]->getName() > data[j + 1]->getName()) {
+                            T* temp = data[j];
+                            data[j] = data[j + 1];
+                            data[j + 1] = temp;
+                        }
+                    }
+                }
+            }
+        }
+        
     }
 
     template<typename T>
@@ -143,8 +160,16 @@ namespace Vectors {
     template<typename T>
     void Vector<T>::print() const {
 
-        for (int i = 0; i < size; i++) {
-            std::cout << "\t" << i + 1 << ". " << data[i]->toString() << std::endl;
+        if constexpr (std::is_same_v(T, std::string)) {
+            for (int i = 0; i < size; i++) {
+                std::cout << "\t" << i + 1 << ". " << data[i] << std::endl;
+            }
+        }
+        else {
+
+            for (int i = 0; i < size; i++) {
+                std::cout << "\t" << i + 1 << ". " << data[i]->toString() << std::endl;
+            }
         }
     }
 
@@ -171,8 +196,9 @@ namespace Vectors {
 
     template<typename T>
     bool Vector<T>::exists(const T& obj) {
+
         for (int i = 0; i < size; i++) {
-            if (this->getByIndex(i) == obj) return true;
+            if (this->getByIndex(i) == &obj) return true;
         }
         return false;
     }
