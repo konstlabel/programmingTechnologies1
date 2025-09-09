@@ -30,6 +30,6 @@ namespace Persons {
         void setPatronymic(const std::string& patronymic);
         virtual void setRole(Role role);
 
-        virtual std::string toString() = 0;
+        virtual std::string toString() const = 0;
     };
 }

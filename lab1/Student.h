@@ -38,6 +38,6 @@ namespace Students {
         void setCourse(int course);
         void setAverageScore(float averageScore);
 
-        std::string toString() override;
+        std::string toString() const override;
     };
 }
