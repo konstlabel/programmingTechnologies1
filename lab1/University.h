@@ -59,6 +59,7 @@ namespace Universities {
 		void setPositions(const Vector<std::string>& positions);
 		void setResponsibilities(const Vector<std::string>& responsibilities);
 
+		void print();
 		void printAdmins();
 		void printStudents();
 		void printProfessors();

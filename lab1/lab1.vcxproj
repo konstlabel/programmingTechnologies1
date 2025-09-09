@@ -130,6 +130,7 @@
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="Professor.cpp" />
     <ClCompile Include="Student.cpp" />
+    <ClCompile Include="University.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
