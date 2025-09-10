@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <regex>
 
 #include "Admin.h"
 #include "Role.h"
@@ -17,11 +18,12 @@ Admin::Admin(const std::string& surname,
 	const std::string& patronymic,
 	const std::string& position,
 	const std::string& phone,
-	const std::string& responsibility) : Person(surname, name, patronymic),
-										position(position),
-										phone(phone),
-										responsibility(responsibility) {
-
+	const std::string& responsibility)
+	: Person(surname, name, patronymic) {
+	
+	setPosition(position);
+	setPhone(phone);
+	setResponsibility(responsibility);
 	role = Role::Admin;
 	std::cout << "The Admin's parameterized constructor is called" << std::endl;
 }
@@ -37,7 +39,7 @@ Admin::Admin(const Admin& other) : Person(other.surname, other.name, other.patro
 
 Admin::~Admin() {
 
-	std::cout << "The Admin's destructor constructor is called" << std::endl;
+	std::cout << "The Admin's destructor is called" << std::endl;
 }
 
 Admin& Admin::operator =(const Admin& other) {
@@ -65,24 +67,42 @@ std::string Admin::getPhone() const {
 	return phone;
 }
 
-std::string Admin::getResponsibity() const {
+std::string Admin::getResponsibility() const {
 
 	return responsibility;
 }
 
 void Admin::setPosition(const std::string& position) {
 
-	this->position = position;
+	std::string trimmed = position;
+	trimmed.erase(0, trimmed.find_first_not_of(" \t\n\r"));
+	trimmed.erase(trimmed.find_last_not_of(" \t\n\r") + 1);
+
+	if (trimmed.empty())
+		this->position = "unknown";
+	else
+		this->position = trimmed;
 }
 
 void Admin::setPhone(const std::string & phone) {
 
-	this->phone = phone;
+	const std::regex phoneTemplate(R"(\+7\d{10,10})");
+	if (std::regex_match(phone, phoneTemplate))
+		this->phone = phone;
+	else
+		throw std::invalid_argument("Error! Unknown phone number format");
 }
 
 void Admin::setResponsibility(const std::string& responsibility) {
 
-	this->responsibility = responsibility;
+	std::string trimmed = responsibility;
+	trimmed.erase(0, trimmed.find_first_not_of(" \t\n\r"));
+	trimmed.erase(trimmed.find_last_not_of(" \t\n\r") + 1);
+
+	if (trimmed.empty())
+		this->responsibility = "unknown";
+	else
+		this->responsibility = trimmed;
 }
 
 std::string Admin::toString() const {

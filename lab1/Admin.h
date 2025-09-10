@@ -27,7 +27,7 @@ namespace Admins {
 
 		std::string getPosition() const;
 		std::string getPhone() const;
-		std::string getResponsibity() const;
+		std::string getResponsibility() const;
 
 		void setPosition(const std::string& position);
 		void setPhone(const std::string& phone);
