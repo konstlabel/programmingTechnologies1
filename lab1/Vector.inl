@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <type_traits>
+#include <stdexcept>
 
 namespace Vectors {
 
@@ -10,14 +12,17 @@ namespace Vectors {
         capacity = capacity * 2;
         T** newData = new T * [capacity];
 
-        for (int i = 0; i < size; i++) {
-            if (ownsObjects == true) {
+        
+        for (int i = 0; i < size; i++)
+            if constexpr (std::is_same_v<T, std::string>) {
                 newData[i] = new T(*data[i]);
-                delete data[i];
             }
-            else 
-                newData[i] = data[i];
-        }
+            else {
+                if (ownsObjects == true)
+                    newData[i] = new T(*data[i]);
+                else
+                    newData[i] = data[i];
+            }
 
         delete[] data;
         data = newData;
@@ -26,12 +31,25 @@ namespace Vectors {
     template<typename T>
     void Vector<T>::sort() {
 
-        if constexpr (std::is_same_v(T, std::string)) {
+        if constexpr (std::is_same_v<T, std::string>) {
 
             for (int i = 0; i < size - 1; i++) {
                 for (int j = 0; j < size - i - 1; j++) {
 
                     if (*data[j] > *data[j + 1]) {
+                        T* temp = data[j];
+                        data[j] = data[j + 1];
+                        data[j + 1] = temp;
+                    }
+                }
+            }
+        }
+        else if constexpr (std::is_same_v<T, Groups::Group>) {
+
+            for (int i = 0; i < size - 1; i++) {
+                for (int j = 0; j < size - i - 1; j++) {
+
+                    if (data[j]->getName() > data[j + 1]->getName()) {
                         T* temp = data[j];
                         data[j] = data[j + 1];
                         data[j + 1] = temp;
@@ -137,6 +155,15 @@ namespace Vectors {
     }
 
     template<typename T>
+    bool Vector<T>::operator ==(const Vector<T>& other) const {
+        
+        return (data == other.data) &&
+            (size == other.size) &&
+            (capacity == other.capacity) &&
+            (ownsObjects == other.ownsObjects);
+    }
+
+    template<typename T>
     int Vector<T>::getSize() const {
 
         return size;
@@ -158,7 +185,7 @@ namespace Vectors {
     void Vector<T>::add(const T* newElement) {
 
         if (newElement == nullptr)
-            throw std::invalid_argument("Error! Null pointer element");
+            throw std::invalid_argument("Error! Null pointer element is not allowed");
 
         if constexpr (std::is_same_v<T, std::string>) {
 
@@ -178,7 +205,46 @@ namespace Vectors {
             else
                 data[size++] = const_cast<T*>(newElement);
 
-            this->sort();
+            sort();
+    }
+
+    template<typename T>
+    void Vector<T>::deleteByIndex(int index) {
+
+        if (index < 0 || index >= size)
+            throw std::out_of_range("Error! index must greater than 0 and less than or equal to current size (" + std::to_string(size) + ")");
+
+        if (ownsObjects)
+            delete data[index];
+
+        for (int i = index; i < size - 1; i++)
+            data[i] = data[i + 1];
+
+        data[size - 1] = nullptr;
+        size--;
+    }
+
+    template<typename T>
+    void Vector<T>::deleteByObject(T* obj) {
+
+        for (int i = 0; i < size; i++) {
+            if (data[i] == obj) {
+                if (ownsObjects)
+                    delete data[i];
+
+                for (int j = i; j < size; j++)
+                    data[j] = data[j + 1];
+
+                data[size - 1] = nullptr;
+                size--;
+                
+                break;
+            }
+
+            if (i == size - 1) {
+                throw std::invalid_argument("Error! No object in data");
+            }
+        }
     }
 
     template<typename T>
@@ -189,7 +255,7 @@ namespace Vectors {
             return;
         }
 
-        if constexpr (std::is_same_v(T, std::string)) {
+        if constexpr (std::is_same_v<T, std::string>) {
             for (int i = 0; i < size; i++) {
                 std::cout << "\t" << i + 1 << ". " << *data[i] << std::endl;
             }
@@ -203,35 +269,35 @@ namespace Vectors {
     }
 
     template<typename T>
-    void Vector<T>::deleteByIndex(int index) {
-
-        if (index < 0 || index >= size) return;
-
-        if (ownsObjects)
-            delete data[index];
-
-        for (int i = index; i < size - 1; i++)
-            data[i] = data[i + 1];
-
-        data[size - 1] = nullptr;
-        size--;
-    }
-
-    template<typename T>
     T* Vector<T>::getByIndex(int index) {
 
         if (index < 0 || index >= size)
-            throw std::out_of_range("Error! index must greater than 0 and less than current size (" + std::to_string(size)) + ")";
+            throw std::out_of_range("Error! index must greater than 0 and less than or equal to current size (" + std::to_string(size) + ")");
 
         return data[index];
     }
 
     template<typename T>
-    bool Vector<T>::exists(const T& obj) {
+    int Vector<T>::getIndex(T* obj) const {
 
         for (int i = 0; i < size; i++) {
-            if (*data[i] == obj) return true;
+            if (data[i] == obj) 
+                return i;
+        }
+        return -1;
+    }
+
+    template<typename T>
+    bool Vector<T>::exists(const T& obj) const {
+
+        for (int i = 0; i < size; i++) {
+            if (data[i] == &obj) return true;
         }
         return false;
+    }
+
+    template<typename T>
+    bool Vector<T>::isEmpty() const {
+        return size == 0;
     }
 }

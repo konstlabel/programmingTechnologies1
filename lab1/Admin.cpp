@@ -57,17 +57,17 @@ Admin& Admin::operator =(const Admin& other) {
 	return *this;
 }
 
-std::string Admin::getPosition() const {
+const std::string& Admin::getPosition() const {
 
 	return position;
 }
 
-std::string Admin::getPhone() const {
+const std::string& Admin::getPhone() const {
 
 	return phone;
 }
 
-std::string Admin::getResponsibility() const {
+const std::string& Admin::getResponsibility() const {
 
 	return responsibility;
 }
@@ -79,7 +79,7 @@ void Admin::setPosition(const std::string& position) {
 	trimmed.erase(trimmed.find_last_not_of(" \t\n\r") + 1);
 
 	if (trimmed.empty())
-		this->position = "unknown";
+		throw std::invalid_argument("Error! Empty string is not allowed");
 	else
 		this->position = trimmed;
 }
@@ -100,15 +100,31 @@ void Admin::setResponsibility(const std::string& responsibility) {
 	trimmed.erase(trimmed.find_last_not_of(" \t\n\r") + 1);
 
 	if (trimmed.empty())
-		this->responsibility = "unknown";
+		throw std::invalid_argument("Error! Empty string is not allowed");
 	else
 		this->responsibility = trimmed;
 }
 
+
+void Admin::clearPosition() {
+	
+	position = "unknown";
+}
+
+void Admin::clearPhone() {
+
+	phone = "unknown";
+}
+
+void Admin::clearResponsibility() {
+
+	responsibility = "unknown";
+}
+
 std::string Admin::toString() const {
 
-	return std::string(surname + " " + name + " " + patronymic +
+	return surname + " " + name + " " + patronymic +
 		" | Position: " + position +
 		" | Phone: " + phone +
-		" | Responsibility: " + responsibility);
+		" | Responsibility: " + responsibility;
 }

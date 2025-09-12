@@ -25,14 +25,18 @@ namespace Admins {
 
 		Admin& operator =(const Admin& other);
 
-		std::string getPosition() const;
-		std::string getPhone() const;
-		std::string getResponsibility() const;
+		const std::string& getPosition() const;
+		const std::string& getPhone() const;
+		const std::string& getResponsibility() const;
 
 		void setPosition(const std::string& position);
 		void setPhone(const std::string& phone);
 		void setResponsibility(const std::string& responsibility);
 
-		std::string toString() const;
+		void clearPosition();
+		void clearPhone();
+		void clearResponsibility();
+
+		std::string toString() const override;
 	};
 }

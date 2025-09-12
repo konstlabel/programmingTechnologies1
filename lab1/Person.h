@@ -20,10 +20,10 @@ namespace Persons {
         
         Person& operator =(const Person& other);
 
-        std::string getSurname() const;
-        std::string getName() const;
-        std::string getPatronymic() const;
-        virtual Role getRole() const;
+        const std::string& getSurname() const;
+        const std::string& getName() const;
+        const std::string& getPatronymic() const;
+        virtual const Role& getRole() const;
 
         void setSurname(const std::string& surname);
         void setName(const std::string& name);

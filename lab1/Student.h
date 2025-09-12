@@ -1,24 +1,30 @@
 #pragma once
 
 #include "Person.h"
-#include "Group.h"
+
+namespace Groups { class Group; }
 
 namespace Students {
-    using namespace Persons;
     using namespace Groups;
+    using namespace Persons;
 
     class Student : public Person {
-        std::string groupName;
+
+        friend class Groups::Group;
+        
+        Group* group;
         std::string speciality;
         int course;
         float averageScore;
 
+        void attachToGroup(Group* group);
+        void detachFromGroup();
     public:
         Student();
         explicit Student(const std::string& surname,
                         const std::string& name,
                         const std::string& patronymic,
-                        const std::string& groupName,
+                        Group* group,
                         const std::string& speciality,
                         int course,
                         float averageScore);
@@ -28,15 +34,17 @@ namespace Students {
 
         Student& operator =(const Student& other);
 
-        std::string getGroupName() const;
-        std::string getSpeciality() const;
+        const Group* getGroup() const;
+        const std::string& getSpeciality() const;
         int getCourse() const;
         float getAverageScore() const;
 
-        void setGroupName(const std::string& groupName);
+        void setGroup(Group* group);
         void setSpeciality(const std::string& speciality);
         void setCourse(int course);
         void setAverageScore(float averageScore);
+
+        void clearGroup();
 
         std::string toString() const override;
     };

@@ -27,20 +27,26 @@ namespace Professors {
 
 		Professor& operator =(const Professor& other);
 
-		Vector<Group>& getGroups();
-		Vector<std::string>& getSubjects();
+		const Vector<Group>& getGroups() const ;
+		const Vector<std::string>& getSubjects() const;
 
 		void setGroups(const Vector<Group>& groups);
 		void setSubjects(const Vector<std::string>& subjects);
 
-		void addGroup(const Group& group);
-		void addSubject(const std::string& subject);
+		void addGroup(const Group* group);
+		void addSubject(const std::string* subject);
 
-		void deleteGroup(int index);
-		void deleteSubject(int index);
+		void deleteGroupByIndex(int index);
+		void deleteSubjectByIndex(int index);
 
 		void printGroups() const;
 		void printSubjects() const;
+
+		Group* findGroupByIndex(int index);
+		int findGroupIndex(Group* group);
+
+		std::string findSubjectByIndex(int index);
+		int findSubjectIndex(std::string& subject);
 
 		std::string toString() const override;
 	};
