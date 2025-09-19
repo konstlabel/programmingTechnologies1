@@ -6,51 +6,47 @@
 
 using namespace Professors;
 
-Professor::Professor() : Person(), groups(8, false), subjects(4, false) {
-
-	role = Role::Professor;
-	std::cout << "The Professor's default constructor is called " << std::endl;
+Professor::Professor() : Person(), groups(8, false), subjects(8, false) {
+	
+	this->role = Role::Professor;
+	std::cout << "The Professor's default constructor has been called." << std::endl;
 }
 
-Professor::Professor(const std::string& surname,
+Professor::Professor(int id,
+	const std::string& surname,
 	const std::string& name,
 	const std::string& patronymic,
-	const Vector<Group>& groups,
+	const Vector<int>& groupsIds,
 	const Vector<std::string>& subjects) 
-	: Person(surname, name, patronymic), groups(groups), subjects(subjects) {
-
-	role = Role::Professor;
-	std::cout << "The Professor's parameterized constructor is called " << std::endl;
+	: Person(id, surname, name, patronymic, Role::Professor), groups(groupsIds), subjects(subjects) {
+	
+	std::cout << "The Professor's parameterized constructor has been called." << std::endl;
 }
 
 Professor::Professor(const Professor& other) 
-					: Person(other.surname, other.name, other.patronymic),
-					  groups(other.groups), subjects(other.subjects) {
-
-	role = Role::Professor;
-	std::cout << "The Professor's copy constructor is called " << std::endl;
+	: Person(other), groups(other.groups), subjects(other.subjects) {
+	
+	std::cout << "The Professor's copy constructor has been called." << std::endl;
 }
 
 Professor::~Professor() {
 
-	std::cout << "The Professor's destructor is called " << std::endl;
+	std::cout << "The Professor's destructor has been called." << std::endl;
 }
 
 Professor& Professor::operator =(const Professor& other) {
 
 	if (this == &other) return *this;
-
-	surname = other.surname;
-	name = other.name;
-	patronymic = other.patronymic;
+	
+	Person::operator=(other);
 	groups = other.groups;
 	subjects = other.subjects;
-	role = other.role;
+	role = Role::Professor;
 
 	return *this;
 }
 
-const Vector<Group>& Professor::getGroups() const {
+const Vector<int>& Professor::getGroupsIds() const {
 
 	return groups;
 }
@@ -60,9 +56,9 @@ const Vector<std::string>& Professor::getSubjects() const {
 	return subjects;
 }
 
-void Professor::setGroups(const Vector<Group>& groups) {
+void Professor::setGroups(const Vector<int>& groupsIds) {
 
-	this->groups = groups;
+	this->groups = groupsIds;
 }
 
 void Professor::setSubjects(const Vector<std::string>& subjects) {
@@ -70,23 +66,23 @@ void Professor::setSubjects(const Vector<std::string>& subjects) {
 	this->subjects = subjects;
 }
 
-void Professor::addGroup(const Group* group) {
+void Professor::addGroup(int group) {
 
 	try {
-		this->groups.add(group);
+		groups.add(group);
 	}
-	catch (std::invalid_argument& e) {
-		throw e;
+	catch (const std::invalid_argument& e) {
+		std::cerr << "Error adding group: " << e.what() << std::endl;
 	}
 }
 
-void Professor::addSubject(const std::string* subject) {
+void Professor::addSubject(const std::string& subject) {
 
 	try {
-		this->subjects.add(subject);
+		subjects.add(subject);
 	}
-	catch (std::invalid_argument& e) {
-		throw e;
+	catch (const std::invalid_argument& e) {
+		std::cerr << "Error adding subject: " << e.what() << std::endl;
 	}
 }
 
@@ -95,8 +91,18 @@ void Professor::deleteGroupByIndex(int index) {
 	try {
 		groups.deleteByIndex(index);
 	}
-	catch (std::out_of_range& e) {
-		 throw e;
+	catch (const std::out_of_range& e) {
+		std::cerr << "Error deleting group by index: " << e.what() << std::endl;
+	}
+}
+
+void Professor::deleteGroupById(int groupId) {
+
+	try {
+		groups.deleteByObject(groupId);
+	}
+	catch (const std::invalid_argument& e) {
+		std::cerr << "Error deleting group by ID: " << e.what() << std::endl;
 	}
 }
 
@@ -105,61 +111,103 @@ void Professor::deleteSubjectByIndex(int index) {
 	try {
 		subjects.deleteByIndex(index);
 	}
-	catch (std::out_of_range& e) {
-		throw e;
+	catch (const std::out_of_range& e) {
+		std::cerr << "Error deleting subject by index: " << e.what() << std::endl;
 	}
 }
 
-void Professor::printGroups() const {
-
-	std::cout << "Groups:";
-	if (groups.getSize() == 0)
-		std::cout << " No groups" << std::endl;
-	else {
-		std::cout << std::endl;
-		groups.print();
-	}
-}
-
-void Professor::printSubjects() const {
-
-	std::cout << "Subjects:";
-		if (subjects.getSize() == 0)
-			std::cout << " No subjects" << std::endl;
-		else {
-			std::cout << std::endl;
-			subjects.print();
-		}
-}
-
-Group* Professor::findGroupByIndex(int index) {
+void Professor::deleteSubjectByName(const std::string& subject) {
 
 	try {
-		return groups.getByIndex(index);
+		subjects.deleteByObject(subject);
 	}
-	catch (const std::out_of_range&) {
-		return nullptr;
+	catch (const std::invalid_argument& e) {
+		std::cerr << "Error deleting subject by name: " << e.what() << std::endl;
 	}
 }
 
-int Professor::findGroupIndex(Group* group) {
+int Professor::findGroupByIndex(int index) {
 
-	return groups.getIndex(group);
+	try {
+		int* group = groups.getByIndex(index);
+		return *group;
+	}
+	catch (const std::out_of_range&) {
+		return -1;
+	}
+}
+
+int Professor::findGroupIdIndex(int groupId) {
+
+	try {
+		return groups.getIndexByObject(groupId);
+	}
+	catch (const std::invalid_argument&) {
+		return -1;
+	}
 }
 
 std::string Professor::findSubjectByIndex(int index) {
 
 	try {
-		return *(subjects.getByIndex(index));
+		std::string* subject = subjects.getByIndex(index);
+		return *subject;
 	}
 	catch (const std::out_of_range&) {
 		return "";
 	}
 }
 
-int Professor::findSubjectIndex(std::string& subject) {
+int Professor::findSubjectIndex(const std::string& subject) {
 
-	return subjects.getIndex(&subject);
+	try {
+		return subjects.getIndexByObject(subject);
+	}
+	catch (const std::invalid_argument&) {
+		return -1;
+	}
+}
+
+bool Professor::groupExists(int groupId) const {
+
+	return groups.exists(groupId);
+}
+
+bool Professor::subjectExists(const std::string& subject) const {
+
+	return subjects.exists(subject);
+}
+
+bool Professor::isGroupsEmpty() const {
+
+	return groups.isEmpty();
+}
+
+bool Professor::isSubjectsEmpty() const {
+
+	return subjects.isEmpty();
+}
+
+int Professor::getGroupsSize() const {
+
+	return groups.getSize();
+}
+
+int Professor::getSubjectsSize() const {
+
+	return subjects.getSize();
+}
+
+void Professor::printGroupsIds() const {
+
+	std::cout << "Groups IDs for Professor " << this->toString() << " :" << std::endl;
+	groups.print();
+}
+
+void Professor::printSubjects() const {
+
+	std::cout << "Subjects for Professor " << this->toString() << " :" << std::endl;
+	subjects.print();
 }
 
 std::string Professor::toString() const {
