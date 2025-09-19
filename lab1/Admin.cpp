@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <regex>
 
@@ -13,27 +14,26 @@ Admin::Admin() : Person(), position("unknown"), phone("unknown"), responsibility
 	std::cout << "The Admin's default constructor is called" << std::endl;
 }
 
-Admin::Admin(const std::string& surname,
+Admin::Admin(int id,
+	const std::string& surname,
 	const std::string& name,
 	const std::string& patronymic,
 	const std::string& position,
 	const std::string& phone,
 	const std::string& responsibility)
-	: Person(surname, name, patronymic) {
+	: Person(id, surname, name, patronymic, Role::Admin) {
 	
 	setPosition(position);
 	setPhone(phone);
 	setResponsibility(responsibility);
-	role = Role::Admin;
 	std::cout << "The Admin's parameterized constructor is called" << std::endl;
 }
 
-Admin::Admin(const Admin& other) : Person(other.surname, other.name, other.patronymic),
+Admin::Admin(const Admin& other) : Person(other.id, other.surname, other.name, other.patronymic, Role::Admin),
 									position(other.position),
 									phone(other.phone),
 									responsibility(other.responsibility) {
 
-	role = Role::Admin;
 	std::cout << "The Admin's copy constructor is called" << std::endl;
 }
 
@@ -46,13 +46,10 @@ Admin& Admin::operator =(const Admin& other) {
 
 	if (this == &other) return *this;
 
-	surname = other.surname;
-	name = other.name;
-	patronymic = other.patronymic;
+	Person::operator=(other);
 	position = other.position;
 	phone = other.phone;
 	responsibility = other.responsibility;
-	role = other.role;
 
 	return *this;
 }
@@ -74,35 +71,33 @@ const std::string& Admin::getResponsibility() const {
 
 void Admin::setPosition(const std::string& position) {
 
-	std::string trimmed = position;
-	trimmed.erase(0, trimmed.find_first_not_of(" \t\n\r"));
-	trimmed.erase(trimmed.find_last_not_of(" \t\n\r") + 1);
+	std::string trimmed = trim(position);
 
 	if (trimmed.empty())
 		throw std::invalid_argument("Error! Empty string is not allowed");
-	else
-		this->position = trimmed;
+		
+	this->position = trimmed;
 }
 
 void Admin::setPhone(const std::string & phone) {
 
-	const std::regex phoneTemplate(R"(\+7\d{10,10})");
-	if (std::regex_match(phone, phoneTemplate))
-		this->phone = phone;
+	std::string trimmed = trim(phone);
+
+	const std::regex phoneTemplate(R"(^\+7\d{10}$)");
+	if (std::regex_match(trimmed, phoneTemplate))
+		this->phone = trimmed;
 	else
 		throw std::invalid_argument("Error! Unknown phone number format");
 }
 
 void Admin::setResponsibility(const std::string& responsibility) {
 
-	std::string trimmed = responsibility;
-	trimmed.erase(0, trimmed.find_first_not_of(" \t\n\r"));
-	trimmed.erase(trimmed.find_last_not_of(" \t\n\r") + 1);
+	std::string trimmed = trim(responsibility);
 
 	if (trimmed.empty())
 		throw std::invalid_argument("Error! Empty string is not allowed");
-	else
-		this->responsibility = trimmed;
+		
+	this->responsibility = trimmed;
 }
 
 
@@ -123,8 +118,10 @@ void Admin::clearResponsibility() {
 
 std::string Admin::toString() const {
 
-	return surname + " " + name + " " + patronymic +
-		" | Position: " + position +
-		" | Phone: " + phone +
-		" | Responsibility: " + responsibility;
+	std::ostringstream oss;
+	oss << surname << " " << name << " " << patronymic
+		<< " | Position: " << position
+		<< " | Phone: " << phone
+		<< " | Responsibility: " << responsibility;
+	return oss.str();
 }

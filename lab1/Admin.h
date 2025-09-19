@@ -13,7 +13,8 @@ namespace Admins {
 
 	public:
 		Admin();
-		explicit Admin(const std::string& surname,
+		explicit Admin(int id,
+			const std::string& surname,
 			const std::string& name,
 			const std::string& patronymic,
 			const std::string& position,
