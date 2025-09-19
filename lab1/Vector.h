@@ -1,6 +1,6 @@
 #pragma once
-
 #include <string>
+#include <memory>
 
 namespace Vectors {
 
@@ -29,12 +29,18 @@ namespace Vectors {
         bool getOwnsObjects() const;
 
         void add(const T* obj);
+
+        void add(const T& obj);
+        void add(std::unique_ptr<T> obj);
+
         void deleteByIndex(int index);
         void deleteByObject(T* obj);
+        void deleteByObject(const T& obj);
         void print() const;
 
         T* getByIndex(int index);
-        int getIndex(T* obj) const;
+        int getIndexByPointer(T* obj) const;
+        int getIndexByObject(const T& obj) const;
         bool exists(const T& obj) const;
         bool isEmpty() const;
     };
