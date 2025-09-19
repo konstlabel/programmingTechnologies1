@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <string>
 
 #include "Professor.h"
@@ -211,5 +212,7 @@ void Professor::printSubjects() const {
 }
 
 std::string Professor::toString() const {
-	return surname + " " + name + " " + patronymic;
+	std::ostringstream oss;
+	oss << surname << " " << name << " " << patronymic;
+	return oss.str();
 }

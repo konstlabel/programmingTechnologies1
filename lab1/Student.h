@@ -10,21 +10,18 @@ namespace Students {
 
     class Student : public Person {
 
-        friend class Groups::Group;
-        
-        Group* group;
+        int groupId;
         std::string speciality;
         int course;
         float averageScore;
 
-        void attachToGroup(Group* group);
-        void detachFromGroup();
     public:
         Student();
-        explicit Student(const std::string& surname,
+        explicit Student(int id,
+                        const std::string& surname,
                         const std::string& name,
                         const std::string& patronymic,
-                        Group* group,
+                        int groupId,
                         const std::string& speciality,
                         int course,
                         float averageScore);
@@ -34,12 +31,12 @@ namespace Students {
 
         Student& operator =(const Student& other);
 
-        const Group* getGroup() const;
+        int getGroupId() const;
         const std::string& getSpeciality() const;
         int getCourse() const;
         float getAverageScore() const;
 
-        void setGroup(Group* group);
+        void setGroupId(int groupId);
         void setSpeciality(const std::string& speciality);
         void setCourse(int course);
         void setAverageScore(float averageScore);
