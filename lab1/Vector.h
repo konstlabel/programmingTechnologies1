@@ -29,7 +29,6 @@ namespace Vectors {
         bool getOwnsObjects() const;
 
         void add(const T* obj);
-
         void add(const T& obj);
         void add(std::unique_ptr<T> obj);
 

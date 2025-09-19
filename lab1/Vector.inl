@@ -244,7 +244,7 @@ namespace Vectors {
 			copy = new T(obj);
 			add(copy);
 		}
-		catch (...) {
+		catch (const std::invalid_argument& e) {
 			delete copy;
 			throw;
 		}
@@ -306,7 +306,7 @@ namespace Vectors {
 		if (obj == nullptr)
 			throw std::invalid_argument("Cannot delete null object");
 
-		int index = getIndex(obj);
+		int index = getIndexByPointer(obj);
 		if (index == -1)
 			throw std::invalid_argument("Object not found in vector");
 
