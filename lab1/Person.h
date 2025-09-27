@@ -21,6 +21,7 @@ namespace Persons {
         virtual ~Person();
         
         Person& operator =(const Person& other);
+		bool operator ==(const Person& other) const;
 
         int getId() const;
         const std::string& getSurname() const;

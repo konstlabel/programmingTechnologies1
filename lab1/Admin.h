@@ -25,6 +25,7 @@ namespace Admins {
 		~Admin();
 
 		Admin& operator =(const Admin& other);
+		bool operator ==(const Admin& other) const;
 
 		const std::string& getPosition() const;
 		const std::string& getPhone() const;

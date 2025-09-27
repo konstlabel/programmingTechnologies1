@@ -30,6 +30,7 @@ namespace Students {
         ~Student();
 
         Student& operator =(const Student& other);
+		bool operator ==(const Student& other) const;
 
         int getGroupId() const;
         const std::string& getSpeciality() const;

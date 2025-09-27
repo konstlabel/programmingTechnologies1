@@ -12,7 +12,7 @@ std::string Person::trim(const std::string& str) {
 }
 
 Person::Person()
-    : surname("unknown"), name("unknown"), patronymic("unknown") {
+    : id(-1), surname("unknown"), name("unknown"), patronymic("unknown"), role(Role::Unknown) {
 
     std::cout << "The Person's default constructor is called" << std::endl;
 }
@@ -51,6 +51,14 @@ Person& Person::operator=(const Person& other) {
 	role = other.role;
 
     return *this;
+}
+
+bool Person::operator==(const Person& other) const {
+    return id == other.id &&
+           surname == other.surname &&
+           name == other.name &&
+           patronymic == other.patronymic &&
+           role == other.role;
 }
 
 int Person::getId() const {

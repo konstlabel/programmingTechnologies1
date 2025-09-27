@@ -47,6 +47,11 @@ Professor& Professor::operator =(const Professor& other) {
 	return *this;
 }
 
+bool Professor::operator ==(const Professor& other) const {
+
+	return Person::operator==(other) && groups == other.groups && subjects == other.subjects;
+}
+
 const Vector<int>& Professor::getGroupsIds() const {
 
 	return groups;

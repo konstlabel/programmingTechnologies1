@@ -59,6 +59,15 @@ Student& Student::operator =(const Student& other) {
     return *this;
 }
 
+bool Student::operator ==(const Student& other) const {
+    
+    return Person::operator==(other) &&
+           groupId == other.groupId &&
+           speciality == other.speciality &&
+           course == other.course &&
+           averageScore == other.averageScore;
+}
+
 int Student::getGroupId() const {
     
     return groupId;

@@ -7,32 +7,23 @@ using namespace Groups;
 
 Group::Group() : name("unknown"), students(16, false) {
 
-	std::cout << "The Group's default constructor is called " << std::endl;
+	std::cout << "The Group's default constructor is called" << std::endl;
 }
 
 Group::Group(const std::string& name) :students(16, false) {
 
 	setName(name);
-	std::cout << "The Group's parameterized constructor is called " << std::endl;
+	std::cout << "The Group's parameterized constructor is called" << std::endl;
 }
 
-Group::Group(const Group& other) : name(other.name) {
+Group::Group(const Group& other) : name(other.name), students(other.students) {
 
-	students = other.students;
-	for (int i = 0; i < students.getSize(); i++) {
-		students.getByIndex(i)->clearGroup();
-		students.getByIndex(i)->attachToGroup(this);
-	}
-
-	std::cout << "The Group's copy constructor is called " << std::endl;
+	std::cout << "The Group's copy constructor is called" << std::endl;
 }
 
 Group::~Group() {
 
-	for (int i = 0; i < students.getSize(); i++) {
-		students.getByIndex(i)->clearGroup();
-	}
-	std::cout << "The Group's destructor is called " << std::endl;
+	std::cout << "The Group's destructor is called" << std::endl;
 }
 
 Group& Group::operator =(const Group& other) {
@@ -41,17 +32,12 @@ Group& Group::operator =(const Group& other) {
 
 	name = other.name;
 	students = other.students;
-	for (int i = 0; i < students.getSize(); i++) {
-		students.getByIndex(i)->clearGroup();
-		students.getByIndex(i)->attachToGroup(this);
-	}
 	return *this;
 }
 
 bool Group::operator ==(const Group& other) const {
-	
-	return (this->name == other.name) &&
-		(this->students == other.students);
+
+	return (name == other.name && students == other.students);
 }
 
 const std::string& Group::getName() const {
@@ -59,7 +45,7 @@ const std::string& Group::getName() const {
 	return name;
 }
 
-const Vectors::Vector<Students::Student>& Group::getStudents() const {
+const Vector<int>& Group::getStudents() const {
 
 	return students;
 }
@@ -69,14 +55,13 @@ void Group::setName(const std::string& name) {
 	std::string trimmed = name;
 	trimmed.erase(0, trimmed.find_first_not_of(" \t\n\r"));
 	trimmed.erase(trimmed.find_last_not_of(" \t\n\r") + 1);
-
+	
 	if (trimmed.empty())
-		throw std::invalid_argument("Error! Empty string is not allowed");
-	else
-		this->name = trimmed;
+		throw std::invalid_argument("Group name cannot be empty");
+	this->name = trimmed;
 }
 
-void Group::setStudents(const Vectors::Vector<Students::Student>& students) {
+void Group::setStudents(const Vector<int>& students) {
 
 	this->students = students;
 }
@@ -86,80 +71,109 @@ void Group::clearName() {
 	name = "unknown";
 }
 
-void Group::addStudent(Student* student) {
+void Group::addStudentId(int studentId) {
 
-	try {
-		if (students.exists(*student) == false) {
+	if (studentId <= 0)
+		throw std::invalid_argument("Student ID must be a positive integer");
 
-			if (student->getGroup() != nullptr) {
-				student->clearGroup();
-			}
-			students.add(student);
-			student->setGroup(this);
-		}
-		else {
-			std::cout << "The student is already in this group!" << std::endl;
-		}
-	}
-	catch (const std::invalid_argument& e) {
-		std::cerr << e.what() << std::endl;
-	}
+	if (students.exists(studentId))
+		throw std::invalid_argument("Student ID already exists in the group");
+
+	students.add(studentId);
+}
+
+void Group::addStudent(const Student& student) {
+
+	addStudentId(student.getId());
+}
+
+void Group::addStudent(std::unique_ptr<Student> student) {
+
+	if (!student)
+		throw std::invalid_argument("Null student pointer cannot be added");
+
+	addStudentId(student->getId());
 }
 
 void Group::deleteStudentByIndex(int index) {
 
-	try {
-		Student* student = students.getByIndex(index);
-		student->detachFromGroup();
-		students.deleteByIndex(index);
-	}
-	catch (const std::out_of_range& e) {
-		std::cerr << e.what() << std::endl;
-	}
+	students.deleteByIndex(index);
 }
 
-void Group::deleteStudent(Student* student) {
+void Group::deleteStudentById(int studentId) {
 
-	try {
-		students.deleteByObject(student);
-		student->detachFromGroup();
-	}
-	catch (const std::invalid_argument&) {
-		throw std::invalid_argument("Error! No the student in group");
-	}
+	int index = findStudentIndex(studentId);
+	if (index == -1)
+		throw std::invalid_argument("Student ID not found in the group");
+
+	students.deleteByIndex(index);
 }
 
-Student* Group::findByIndex(int index) {
+void Group::deleteStudent(const Student& student) {
+	deleteStudentById(student.getId());
+}
+
+void Group::deleteStudent(std::unique_ptr<Student> student) {
+
+	if (!student)
+		throw std::invalid_argument("Null student pointer cannot be deleted");
+
+	deleteStudentById(student->getId());
+}
+
+int Group::findByIndex(int index) const {
+
+	if (index < 0 || index >= students.getSize())
+		throw std::out_of_range("Index out of range");
 
 	try {
 		return students.getByIndex(index);
 	}
-	catch (const std::out_of_range& e) {
-		std::cerr << e.what() << std::endl;
-		return nullptr;
+	catch (const std::logic_error&) {
+		throw std::logic_error("getByIndex is only implemented for int type");
 	}
 }
 
-int Group::findStudentIndex(Student* student) const {
+int Group::findStudentIndex(int studentId) const {
 
-	if (student == nullptr) 
-		return -1;
-	return students.getIndex(student);
+	return students.getIndexByObject(studentId);
 }
 
-void Group::print() {
+int Group::findStudentIndex(const Student& student) const {
 
-	std::cout << "Group " << name << ":";
-	if (students.getSize() == 0)
-		std::cout << " No students" << std::endl;
-	else {
-
-		std::cout << std::endl;
-		students.print();
-	}
+	return findStudentIndex(student.getId());
 }
 
-std::string Group::toString() const {
+int Group::findStudentIndex(const std::unique_ptr<Student> student) const {
+	
+	if (!student)
+		throw std::invalid_argument("Null student pointer cannot be searched");
+	
+	return findStudentIndex(student->getId());
+}
 
-	return name;
+bool Group::studentExists(int studentId) const {
+
+	return students.exists(studentId);
+}
+
+bool Group::studentExists(const Student& student) const {
+
+	return studentExists(student.getId());
+}
+
+bool Group::studentExists(const std::unique_ptr<Student> student) const {
+
+	if (!student)
+		throw std::invalid_argument("Null student pointer cannot be searched");
+
+	return studentExists(student->getId());
+}
+
+void Group::print() const {
+
+	std::cout << "Group Name: " << name << std::endl;
+
+	std::cout << "Students IDs in the group:" << std::endl;
+	students.print();
 }

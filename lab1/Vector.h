@@ -38,6 +38,7 @@ namespace Vectors {
         void print() const;
 
         T* getByIndex(int index);
+        int getByIndex(int index) const;
         int getIndexByPointer(T* obj) const;
         int getIndexByObject(const T& obj) const;
         bool exists(const T& obj) const;

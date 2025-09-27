@@ -54,6 +54,13 @@ Admin& Admin::operator =(const Admin& other) {
 	return *this;
 }
 
+bool Admin::operator ==(const Admin& other) const {
+	return Person::operator==(other) &&
+		position == other.position &&
+		phone == other.phone &&
+		responsibility == other.responsibility;
+}
+
 const std::string& Admin::getPosition() const {
 
 	return position;

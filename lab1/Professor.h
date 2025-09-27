@@ -27,6 +27,7 @@ namespace Professors {
 		~Professor();
 
 		Professor& operator =(const Professor& other);
+		bool operator ==(const Professor& other) const;
 
 		const Vector<int>& getGroupsIds() const ;
 		const Vector<std::string>& getSubjects() const;

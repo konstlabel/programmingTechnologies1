@@ -55,7 +55,7 @@ namespace Vectors {
 			}
 		}
 
-		else if constexpr (std::is_same_v < T, Persons::Person) {
+		else if constexpr (std::is_same_v <T, Persons::Person>) {
 			for (int i = 0; i < size - 1; i++) {
 				for (int j = 0; j < size - i - 1; j++) {
 					if (data[j]->getSurname() > data[j + 1]->getSurname()) {
@@ -75,7 +75,7 @@ namespace Vectors {
 			}
 		}
 
-		else if constexpr (std::is_same_v < T, Groups::Group) {
+		else if constexpr (std::is_same_v <T, Groups::Group>) {
 			for (int i = 0; i < size - 1; i++) {
 				for (int j = 0; j < size - i - 1; j++) {
 					if (data[j]->getName() > data[j + 1]->getName()) {
@@ -246,7 +246,7 @@ namespace Vectors {
 		}
 		catch (const std::invalid_argument& e) {
 			delete copy;
-			throw;
+			throw e;
 		}
 	}
 
@@ -355,6 +355,18 @@ namespace Vectors {
 			throw std::out_of_range("Index out of range");
 	
 		return data[index];
+	}
+
+	template<typename T>
+	int Vector<T>::getByIndex(int index) const {
+	
+		if constexpr (!std::is_same_v<T, int>)
+			throw std::logic_error("getByIndex is only implemented for int type");
+
+		if (index < 0 || index >= size)
+			throw std::out_of_range("Index out of range");
+	
+		return *data[index];
 	}
 
 	template<typename T>
