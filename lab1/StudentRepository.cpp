@@ -52,32 +52,13 @@ bool StudentRepository::getOwnsObjects() const {
 
 void StudentRepository::add(const Student* student) {
 
-	try {
-		students.add(student);
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
-}
+	if (student == nullptr)
+		throw std::invalid_argument("Error! Null pointer student is not allowed");
 
-void StudentRepository::add(const Student& student) {
+	if (students.exists(*student))
+		throw std::invalid_argument("Error! This student already exists in the university");
 
-	try {
-		students.add(student);
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
-}
-
-void StudentRepository::add(std::unique_ptr<Student> student) {
-
-	try {
-		students.add(std::move(student));
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
+	students.add(student);
 }
 
 void StudentRepository::deleteByIndex(int index) {
@@ -92,19 +73,20 @@ void StudentRepository::deleteByIndex(int index) {
 
 void StudentRepository::deleteByStudent(Student* student) {
 
-	try {
-		students.deleteByObject(student);
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
+	if (student == nullptr)
+		throw std::invalid_argument("Error! Null pointer student is not allowed");
+
+	if (!students.exists(*student))
+		throw std::invalid_argument("Error! This student doesn't exist in the university");
+
+	students.deleteByObject(student);
 }
 
 Student* StudentRepository::findByIndex(int index) {
 	try {
 		return students.getByIndex(index);
 	}
-	catch (const std::out_of_range& e) {
+	catch (const std::out_of_range&) {
 		return nullptr;
 	}
 }
@@ -114,7 +96,7 @@ int StudentRepository::findIndexByPointer(Student* student) const {
 	try {
 		return students.getIndexByPointer(student);
 	}
-	catch (const std::invalid_argument& e) {
+	catch (const std::invalid_argument&) {
 		return -1;
 	}
 }
@@ -124,7 +106,7 @@ int StudentRepository::findIndexByStudent(const Student& student) const {
 	try {
 		return students.getIndexByObject(student);
 	}
-	catch (const std::invalid_argument& e) {
+	catch (const std::invalid_argument&) {
 		return -1;
 	}
 }

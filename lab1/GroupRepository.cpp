@@ -52,32 +52,13 @@ bool GroupRepository::getOwnsObjects() const {
 
 void GroupRepository::add(const Group* group) {
 
-	try {
-		groups.add(group);
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
-}
+	if (group == nullptr)
+		throw std::invalid_argument("Error! Null pointer group is not allowed");
 
-void GroupRepository::add(const Group& group) {
+	if (groups.exists(*group))
+		throw std::invalid_argument("Error! This group already exists in the university");
 
-	try {
-		groups.add(group);
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
-}
-
-void GroupRepository::add(std::unique_ptr<Group> group) {
-
-	try {
-		groups.add(std::move(group));
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
+	groups.add(group);
 }
 
 void GroupRepository::deleteByIndex(int index) {
@@ -92,12 +73,13 @@ void GroupRepository::deleteByIndex(int index) {
 
 void GroupRepository::deleteByGroup(Group* group) {
 
-	try {
-		groups.deleteByObject(group);
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
+	if (group == nullptr)
+		throw std::invalid_argument("Error! Null pointer group is not allowed");
+
+	if (!groups.exists(*group))
+		throw std::invalid_argument("Error! This group doesn't exist in the university");
+
+	groups.deleteByObject(group);
 }
 
 Group* GroupRepository::findByIndex(int index) {
@@ -105,7 +87,7 @@ Group* GroupRepository::findByIndex(int index) {
 	try {
 		return groups.getByIndex(index);
 	}
-	catch (const std::out_of_range& e) {
+	catch (const std::out_of_range&) {
 		return nullptr;
 	}
 }
@@ -115,7 +97,7 @@ int GroupRepository::findIndexByPointer(Group* group) const {
 	try {
 		return groups.getIndexByPointer(group);
 	}
-	catch (const std::invalid_argument& e) {
+	catch (const std::invalid_argument&) {
 		return -1;
 	}
 }
@@ -125,7 +107,7 @@ int GroupRepository::findIndexByGroup(const Group& group) const {
 	try {
 		return groups.getIndexByObject(group);
 	}
-	catch (const std::invalid_argument& e) {
+	catch (const std::invalid_argument&) {
 		return -1;
 	}
 }

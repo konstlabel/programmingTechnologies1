@@ -52,32 +52,13 @@ bool AdminRepository::getOwnsObjects() const {
 
 void AdminRepository::add(const Admin* admin) {
 	
-	try {
-		admins.add(admin);
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
-}
+	if (admin == nullptr)
+		throw std::invalid_argument("Error! Null pointer admin is not allowed");
 
-void AdminRepository::add(const Admin& admin) {
+	if (admins.exists(*admin))
+		throw std::invalid_argument("Error! This admin already exists in the university");
 
-	try {
-		admins.add(admin);
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
-}
-
-void AdminRepository::add(std::unique_ptr<Admin> admin) {
-
-	try {
-		admins.add(std::move(admin));
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
+	admins.add(admin);
 }
 
 void AdminRepository::deleteByIndex(int index) {
@@ -92,12 +73,13 @@ void AdminRepository::deleteByIndex(int index) {
 
 void AdminRepository::deleteByAdmin(Admin* admin) {
 
-	try {
-		admins.deleteByObject(admin);
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
+	if (admin == nullptr)
+		throw std::invalid_argument("Error! Null pointer admin is not allowed");
+
+	if (!admins.exists(*admin))
+		throw std::invalid_argument("Error! This admin doesn't exist in the university");
+
+	admins.deleteByObject(admin);
 }
 
 Admin* AdminRepository::findByIndex(int index) {
@@ -105,7 +87,7 @@ Admin* AdminRepository::findByIndex(int index) {
 	try {
 		return admins.getByIndex(index);
 	}
-	catch (const std::out_of_range& e) {
+	catch (const std::out_of_range&) {
 		return nullptr;
 	}
 }
@@ -115,7 +97,7 @@ int AdminRepository::findIndexByPointer(Admin* admin) const {
 	try {
 		return admins.getIndexByPointer(admin);
 	}
-	catch (const std::invalid_argument& e) {
+	catch (const std::invalid_argument&) {
 		return -1;
 	}
 }
@@ -125,7 +107,7 @@ int AdminRepository::findIndexByAdmin(const Admin& admin) const {
 	try {
 		return admins.getIndexByObject(admin);
 	}
-	catch (const std::invalid_argument& e) {
+	catch (const std::invalid_argument&) {
 		return -1;
 	}
 }

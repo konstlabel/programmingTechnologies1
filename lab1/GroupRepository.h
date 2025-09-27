@@ -24,8 +24,6 @@ namespace GroupRepositories {
 		bool getOwnsObjects() const;
 		
 		void add(const Group* group);
-		void add(const Group& group);
-		void add(std::unique_ptr<Group> group);
 		
 		void deleteByIndex(int index);
 		void deleteByGroup(Group* group);

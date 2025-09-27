@@ -24,8 +24,6 @@ namespace StudentRepositories {
 		bool getOwnsObjects() const;
 
 		void add(const Student* student);
-		void add(const Student& student);
-		void add(std::unique_ptr<Student> student);
 
 		void deleteByIndex(int index);
 		void deleteByStudent(Student* student);

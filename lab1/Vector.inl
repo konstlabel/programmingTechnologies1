@@ -4,6 +4,9 @@
 #include <type_traits>
 #include <stdexcept>
 
+#include "Person.h"
+#include "Group.h"
+
 namespace Vectors {
 
 	template<typename T>

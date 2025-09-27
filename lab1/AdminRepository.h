@@ -24,8 +24,6 @@ namespace AdminRepositories {
 			bool getOwnsObjects() const;
 
 			void add(const Admin* admin);
-			void add(const Admin& admin);
-			void add(std::unique_ptr<Admin> admin);
 
 			void deleteByIndex(int index);
 			void deleteByAdmin(Admin* admin);

@@ -52,32 +52,13 @@ bool ProfessorRepository::getOwnsObjects() const {
 
 void ProfessorRepository::add(const Professor* professor) {
 
-	try {
-		professors.add(professor);
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
-}
+	if (professor == nullptr)
+		throw std::invalid_argument("Error! Null pointer professor is not allowed");
 
-void ProfessorRepository::add(const Professor& professor) {
+	if (professors.exists(*professor))
+		throw std::invalid_argument("Error! This professor already exists in the university");
 
-	try {
-		professors.add(professor);
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
-}
-
-void ProfessorRepository::add(std::unique_ptr<Professor> professor) {
-
-	try {
-		professors.add(std::move(professor));
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
+	professors.add(professor);
 }
 
 void ProfessorRepository::deleteByIndex(int index) {
@@ -92,12 +73,13 @@ void ProfessorRepository::deleteByIndex(int index) {
 
 void ProfessorRepository::deleteByProfessor(Professor* professor) {
 
-	try {
-		professors.deleteByObject(professor);
-	}
-	catch (const std::invalid_argument& e) {
-		throw e;
-	}
+	if (professor == nullptr)
+		throw std::invalid_argument("Error! Null pointer professor is not allowed");
+
+	if (!professors.exists(*professor))
+		throw std::invalid_argument("Error! This professor doesn't exist in the university");
+
+	professors.deleteByObject(professor);
 }
 
 Professor* ProfessorRepository::findByIndex(int index) {
@@ -105,7 +87,7 @@ Professor* ProfessorRepository::findByIndex(int index) {
 	try {
 		return professors.getByIndex(index);
 	}
-	catch (const std::out_of_range& e) {
+	catch (const std::out_of_range&) {
 		return nullptr;
 	}
 }
@@ -115,7 +97,7 @@ int ProfessorRepository::findIndexByPointer(Professor* professor) const {
 	try {
 		return professors.getIndexByPointer(professor);
 	}
-	catch (const std::invalid_argument& e) {
+	catch (const std::invalid_argument&) {
 		return -1;
 	}
 }
@@ -125,7 +107,7 @@ int ProfessorRepository::findIndexByProfessor(const Professor& professor) const 
 	try {
 		return professors.getIndexByObject(professor);
 	}
-	catch (const std::invalid_argument& e) {
+	catch (const std::invalid_argument&) {
 		return -1;
 	}
 }

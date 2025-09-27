@@ -126,20 +126,38 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
+    <ClCompile Include="AdminRepository.cpp" />
     <ClCompile Include="Group.cpp" />
+    <ClCompile Include="GroupRepository.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Person.cpp" />
+    <ClCompile Include="PositionRepository.cpp" />
+    <ClCompile Include="ProfessorRepository.cpp" />
+    <ClCompile Include="Project.h" />
     <ClCompile Include="Professor.cpp" />
+    <ClCompile Include="ResponsibilityRepository.cpp" />
+    <ClCompile Include="SpecialityRepository.cpp" />
+    <ClCompile Include="SpecialityRepository.h" />
     <ClCompile Include="Student.cpp" />
+    <ClCompile Include="StudentRepository.cpp" />
+    <ClCompile Include="StudentRepository.h" />
+    <ClCompile Include="SubjectRepository.cpp" />
     <ClCompile Include="University.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
+    <ClInclude Include="AdminRepository.h" />
     <ClInclude Include="Group.h" />
+    <ClInclude Include="GroupRepository.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Person.h" />
+    <ClInclude Include="PositionRepository.h" />
     <ClInclude Include="Professor.h" />
+    <ClInclude Include="ProfessorRepository.h" />
+    <ClInclude Include="ResponsibilityRepository.h" />
     <ClInclude Include="Role.h" />
     <ClInclude Include="Student.h" />
+    <ClInclude Include="SubjectRepository.h" />
     <ClInclude Include="University.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>

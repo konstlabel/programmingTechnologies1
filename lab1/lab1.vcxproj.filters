@@ -13,28 +13,73 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы заголовков\entity">
+      <UniqueIdentifier>{42b81d7d-4109-4478-ac18-17556a6879a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\entity">
+      <UniqueIdentifier>{8ccc3b98-500a-43b2-b1de-69b7a814da5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\repository">
+      <UniqueIdentifier>{e6548c76-544f-4667-bc89-e24f09b51b6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\repository">
+      <UniqueIdentifier>{902fc8fe-91c3-4e70-a6a9-82119958db61}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Person.cpp">
-      <Filter>Файлы ресурсов</Filter>
+    <ClCompile Include="Admin.cpp">
+      <Filter>Файлы ресурсов\entity</Filter>
     </ClCompile>
     <ClCompile Include="Group.cpp">
-      <Filter>Файлы ресурсов</Filter>
+      <Filter>Файлы ресурсов\entity</Filter>
     </ClCompile>
-    <ClCompile Include="Student.cpp">
-      <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
-    <ClCompile Include="Admin.cpp">
-      <Filter>Файлы ресурсов</Filter>
+    <ClCompile Include="Person.cpp">
+      <Filter>Файлы ресурсов\entity</Filter>
     </ClCompile>
     <ClCompile Include="Professor.cpp">
-      <Filter>Файлы ресурсов</Filter>
+      <Filter>Файлы ресурсов\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Student.cpp">
+      <Filter>Файлы ресурсов\entity</Filter>
     </ClCompile>
     <ClCompile Include="University.cpp">
-      <Filter>Файлы ресурсов</Filter>
+      <Filter>Файлы ресурсов\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Project.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClCompile>
+    <ClCompile Include="AdminRepository.cpp">
+      <Filter>Файлы ресурсов\repository</Filter>
+    </ClCompile>
+    <ClCompile Include="GroupRepository.cpp">
+      <Filter>Файлы ресурсов\repository</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfessorRepository.cpp">
+      <Filter>Файлы ресурсов\repository</Filter>
+    </ClCompile>
+    <ClCompile Include="StudentRepository.h">
+      <Filter>Файлы заголовков\repository</Filter>
+    </ClCompile>
+    <ClCompile Include="StudentRepository.cpp">
+      <Filter>Файлы ресурсов\repository</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialityRepository.h">
+      <Filter>Файлы заголовков\repository</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialityRepository.cpp">
+      <Filter>Файлы ресурсов\repository</Filter>
+    </ClCompile>
+    <ClCompile Include="SubjectRepository.cpp">
+      <Filter>Файлы ресурсов\repository</Filter>
+    </ClCompile>
+    <ClCompile Include="PositionRepository.cpp">
+      <Filter>Файлы ресурсов\repository</Filter>
+    </ClCompile>
+    <ClCompile Include="ResponsibilityRepository.cpp">
+      <Filter>Файлы ресурсов\repository</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,26 +89,47 @@
     <ClInclude Include="Vector.inl">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Group.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Person.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Student.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Professor.h">
+    <ClInclude Include="Role.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Admin.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Group.h">
+      <Filter>Файлы заголовков\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Person.h">
+      <Filter>Файлы заголовков\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Professor.h">
+      <Filter>Файлы заголовков\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Student.h">
+      <Filter>Файлы заголовков\entity</Filter>
     </ClInclude>
     <ClInclude Include="University.h">
+      <Filter>Файлы заголовков\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Role.h">
-      <Filter>Файлы заголовков</Filter>
+    <ClInclude Include="AdminRepository.h">
+      <Filter>Файлы заголовков\repository</Filter>
+    </ClInclude>
+    <ClInclude Include="GroupRepository.h">
+      <Filter>Файлы заголовков\repository</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfessorRepository.h">
+      <Filter>Файлы заголовков\repository</Filter>
+    </ClInclude>
+    <ClInclude Include="SubjectRepository.h">
+      <Filter>Файлы заголовков\repository</Filter>
+    </ClInclude>
+    <ClInclude Include="PositionRepository.h">
+      <Filter>Файлы заголовков\repository</Filter>
+    </ClInclude>
+    <ClInclude Include="ResponsibilityRepository.h">
+      <Filter>Файлы заголовков\repository</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

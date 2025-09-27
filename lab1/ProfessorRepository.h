@@ -24,8 +24,6 @@ namespace ProfessorRepositories {
 		bool getOwnsObjects() const;
 		
 		void add(const Professor* professor);
-		void add(const Professor& professor);
-		void add(std::unique_ptr<Professor> professor);
 		
 		void deleteByIndex(int index);
 		void deleteByProfessor(Professor* professor);
