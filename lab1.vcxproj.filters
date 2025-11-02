@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков\subject">
+      <UniqueIdentifier>{c50c4e06-eeca-4d94-8a89-72f5d64e794a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\group">
+      <UniqueIdentifier>{5b3a9cae-fc5e-44b3-bcc9-371cbe362f9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\position">
+      <UniqueIdentifier>{03928495-35d6-4738-8836-04f7dd6f1c3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\professor">
+      <UniqueIdentifier>{249f4451-f56b-4fa5-b0a0-186f49461d7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\responsibility">
+      <UniqueIdentifier>{f869adb4-8ea7-42fe-9960-cee73e2fccbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\score">
+      <UniqueIdentifier>{9e647cdb-8982-439c-a6b0-40ca395e7c63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\speciality">
+      <UniqueIdentifier>{9cf88fb6-e30b-4e1c-a236-54fae74d825e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\student">
+      <UniqueIdentifier>{9326e3d1-8f36-4aa4-a7b3-e4a893fbd361}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\admin">
+      <UniqueIdentifier>{385d3aee-2acc-407f-9f0f-1ac5e66013e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\admin">
+      <UniqueIdentifier>{bafa79f0-4cdd-4c0d-9353-913c399ccf92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\group">
+      <UniqueIdentifier>{63fb16d9-b080-4a9f-810c-c6e69914e867}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\position">
+      <UniqueIdentifier>{f806b4ef-8566-4efc-9d9f-adf679bbeb27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\professor">
+      <UniqueIdentifier>{87cbd59f-c1c0-4a65-a1d8-99e33a69290a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\responsibility">
+      <UniqueIdentifier>{4e1905bc-7f11-4a98-9ec4-cdd710444b0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\score">
+      <UniqueIdentifier>{00ddbcff-4784-492e-9383-2d36d170a7de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\speciality">
+      <UniqueIdentifier>{8f6cadb9-a4d3-4e45-9106-33394f31244e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\student">
+      <UniqueIdentifier>{bbb65cc7-3d25-4644-bb83-005bf31628b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\subject">
+      <UniqueIdentifier>{2ec449e1-bfc1-46ac-8c92-6fd623320b7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\person">
+      <UniqueIdentifier>{617a79d3-96ce-4e57-a9b9-43739756af26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\vector">
+      <UniqueIdentifier>{64e4a8f8-846b-404e-8872-b54773aebefc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\libraries">
+      <UniqueIdentifier>{1246d18d-1eea-427a-9422-05a0602c96ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\interfaces">
+      <UniqueIdentifier>{a9cb2bac-99dc-4c86-8a04-c7ef053837db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\person">
+      <UniqueIdentifier>{1ed561ea-6348-49c7-ba9c-e164e20b5e9f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lab1.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>Файлы ресурсов\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="Admin.cpp">
+      <Filter>Файлы ресурсов\admin</Filter>
+    </ClCompile>
+    <ClCompile Include="Group.cpp">
+      <Filter>Файлы ресурсов\group</Filter>
+    </ClCompile>
+    <ClCompile Include="Position.cpp">
+      <Filter>Файлы ресурсов\position</Filter>
+    </ClCompile>
+    <ClCompile Include="Professor.cpp">
+      <Filter>Файлы ресурсов\professor</Filter>
+    </ClCompile>
+    <ClCompile Include="Responsibility.cpp">
+      <Filter>Файлы ресурсов\responsibility</Filter>
+    </ClCompile>
+    <ClCompile Include="Score.cpp">
+      <Filter>Файлы ресурсов\score</Filter>
+    </ClCompile>
+    <ClCompile Include="Speciality.cpp">
+      <Filter>Файлы ресурсов\speciality</Filter>
+    </ClCompile>
+    <ClCompile Include="Student.cpp">
+      <Filter>Файлы ресурсов\student</Filter>
+    </ClCompile>
+    <ClCompile Include="AdminRepository.cpp">
+      <Filter>Файлы ресурсов\admin</Filter>
+    </ClCompile>
+    <ClCompile Include="Repository.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="GroupRepository.cpp">
+      <Filter>Файлы ресурсов\group</Filter>
+    </ClCompile>
+    <ClCompile Include="PositionRepository.cpp">
+      <Filter>Файлы ресурсов\position</Filter>
+    </ClCompile>
+    <ClCompile Include="ResponsibilityRepository.cpp">
+      <Filter>Файлы ресурсов\responsibility</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialityRepository.cpp">
+      <Filter>Файлы ресурсов\speciality</Filter>
+    </ClCompile>
+    <ClCompile Include="SubjectRepository.cpp">
+      <Filter>Файлы ресурсов\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfessorRepository.cpp">
+      <Filter>Файлы ресурсов\professor</Filter>
+    </ClCompile>
+    <ClCompile Include="StudentRepository.cpp">
+      <Filter>Файлы ресурсов\student</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreRepository.cpp">
+      <Filter>Файлы ресурсов\score</Filter>
+    </ClCompile>
+    <ClCompile Include="AdminService.cpp">
+      <Filter>Файлы ресурсов\admin</Filter>
+    </ClCompile>
+    <ClCompile Include="Service.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="ResponsibilityService.cpp">
+      <Filter>Файлы ресурсов\responsibility</Filter>
+    </ClCompile>
+    <ClCompile Include="PositionService.cpp">
+      <Filter>Файлы ресурсов\position</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialityService.cpp">
+      <Filter>Файлы ресурсов\speciality</Filter>
+    </ClCompile>
+    <ClCompile Include="SubjectService.cpp">
+      <Filter>Файлы ресурсов\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="GroupService.cpp">
+      <Filter>Файлы ресурсов\group</Filter>
+    </ClCompile>
+    <ClCompile Include="StudentService.cpp">
+      <Filter>Файлы ресурсов\student</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfessorService.cpp">
+      <Filter>Файлы ресурсов\professor</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreService.cpp">
+      <Filter>Файлы ресурсов\score</Filter>
+    </ClCompile>
+    <ClCompile Include="University.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="Person.cpp">
+      <Filter>Файлы ресурсов\person</Filter>
+    </ClCompile>
+    <ClCompile Include="PersonDto.cpp">
+      <Filter>Файлы ресурсов\person</Filter>
+    </ClCompile>
+    <ClCompile Include="AdminDto.cpp">
+      <Filter>Файлы ресурсов\admin</Filter>
+    </ClCompile>
+    <ClCompile Include="GroupDto.cpp">
+      <Filter>Файлы ресурсов\group</Filter>
+    </ClCompile>
+    <ClCompile Include="PositionDto.cpp">
+      <Filter>Файлы ресурсов\position</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfessorDto.cpp">
+      <Filter>Файлы ресурсов\professor</Filter>
+    </ClCompile>
+    <ClCompile Include="ResponsibilityDto.cpp">
+      <Filter>Файлы ресурсов\responsibility</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreDto.cpp">
+      <Filter>Файлы ресурсов\score</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialityDto.cpp">
+      <Filter>Файлы ресурсов\speciality</Filter>
+    </ClCompile>
+    <ClCompile Include="StudentDto.cpp">
+      <Filter>Файлы ресурсов\student</Filter>
+    </ClCompile>
+    <ClCompile Include="SubjectDto.cpp">
+      <Filter>Файлы ресурсов\subject</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Subject.h">
+      <Filter>Файлы заголовков\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="Admin.h">
+      <Filter>Файлы заголовков\admin</Filter>
+    </ClInclude>
+    <ClInclude Include="Group.h">
+      <Filter>Файлы заголовков\group</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>Файлы заголовков\position</Filter>
+    </ClInclude>
+    <ClInclude Include="Professor.h">
+      <Filter>Файлы заголовков\professor</Filter>
+    </ClInclude>
+    <ClInclude Include="Responsibility.h">
+      <Filter>Файлы заголовков\responsibility</Filter>
+    </ClInclude>
+    <ClInclude Include="Score.h">
+      <Filter>Файлы заголовков\score</Filter>
+    </ClInclude>
+    <ClInclude Include="Speciality.h">
+      <Filter>Файлы заголовков\speciality</Filter>
+    </ClInclude>
+    <ClInclude Include="Student.h">
+      <Filter>Файлы заголовков\student</Filter>
+    </ClInclude>
+    <ClInclude Include="Person.h">
+      <Filter>Файлы заголовков\person</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonDto.h">
+      <Filter>Файлы заголовков\person</Filter>
+    </ClInclude>
+    <ClInclude Include="AdminDto.h">
+      <Filter>Файлы заголовков\admin</Filter>
+    </ClInclude>
+    <ClInclude Include="GroupDto.h">
+      <Filter>Файлы заголовков\group</Filter>
+    </ClInclude>
+    <ClInclude Include="PositionDto.h">
+      <Filter>Файлы заголовков\position</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfessorDto.h">
+      <Filter>Файлы заголовков\professor</Filter>
+    </ClInclude>
+    <ClInclude Include="ResponsibilityDto.h">
+      <Filter>Файлы заголовков\responsibility</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreDto.h">
+      <Filter>Файлы заголовков\score</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialityDto.h">
+      <Filter>Файлы заголовков\speciality</Filter>
+    </ClInclude>
+    <ClInclude Include="StudentDto.h">
+      <Filter>Файлы заголовков\student</Filter>
+    </ClInclude>
+    <ClInclude Include="SubjectDto.h">
+      <Filter>Файлы заголовков\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Файлы заголовков\vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.inl">
+      <Filter>Файлы заголовков\vector</Filter>
+    </ClInclude>
+    <ClInclude Include="AdminRepository.h">
+      <Filter>Файлы заголовков\admin</Filter>
+    </ClInclude>
+    <ClInclude Include="GroupRepository.h">
+      <Filter>Файлы заголовков\group</Filter>
+    </ClInclude>
+    <ClInclude Include="PositionRepository.h">
+      <Filter>Файлы заголовков\position</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfessorRepository.h">
+      <Filter>Файлы заголовков\professor</Filter>
+    </ClInclude>
+    <ClInclude Include="ResponsibilityRepository.h">
+      <Filter>Файлы заголовков\responsibility</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreRepository.h">
+      <Filter>Файлы заголовков\score</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialityRepository.h">
+      <Filter>Файлы заголовков\speciality</Filter>
+    </ClInclude>
+    <ClInclude Include="StudentRepository.h">
+      <Filter>Файлы заголовков\student</Filter>
+    </ClInclude>
+    <ClInclude Include="SubjectRepository.h">
+      <Filter>Файлы заголовков\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="AdminService.h">
+      <Filter>Файлы заголовков\admin</Filter>
+    </ClInclude>
+    <ClInclude Include="ResponsibilityService.h">
+      <Filter>Файлы заголовков\responsibility</Filter>
+    </ClInclude>
+    <ClInclude Include="PositionService.h">
+      <Filter>Файлы заголовков\position</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialityService.h">
+      <Filter>Файлы заголовков\speciality</Filter>
+    </ClInclude>
+    <ClInclude Include="SubjectService.h">
+      <Filter>Файлы заголовков\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="StudentService.h">
+      <Filter>Файлы заголовков\student</Filter>
+    </ClInclude>
+    <ClInclude Include="GroupService.h">
+      <Filter>Файлы заголовков\group</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfessorService.h">
+      <Filter>Файлы заголовков\professor</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreService.h">
+      <Filter>Файлы заголовков\score</Filter>
+    </ClInclude>
+    <ClInclude Include="Element.h">
+      <Filter>Файлы заголовков\vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Element.inl">
+      <Filter>Файлы заголовков\vector</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateEntity.h">
+      <Filter>Файлы заголовков\libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="PrintTable.h">
+      <Filter>Файлы заголовков\libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Файлы заголовков\libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="University.h">
+      <Filter>Файлы заголовков\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Service.h">
+      <Filter>Файлы заголовков\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Repository.h">
+      <Filter>Файлы заголовков\interfaces</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
