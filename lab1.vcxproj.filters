@@ -360,4 +360,7 @@
       <Filter>Файлы заголовков\interfaces</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
+  </ItemGroup>
 </Project>
