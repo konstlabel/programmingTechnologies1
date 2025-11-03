@@ -23,7 +23,7 @@ namespace Vectors {
 	}
 
 	template<typename T>
-	Vector<T>::Vector(const Vector<T>& other) : _size(other._size) {
+	Vector<T>::Vector(const Vector<T>& other) {
 
 		if (!other.isEmpty()) {
 			Element<T>* current = other._head;
@@ -31,6 +31,11 @@ namespace Vectors {
 				add(current->_data);
 				current = current->_next;
 			}
+		}
+		else {
+			_size = 0;
+			_head = nullptr;
+			_tail = nullptr;
 		}
 		std::cout << "The Vector's copy constructor is called " << std::endl;
 	}
